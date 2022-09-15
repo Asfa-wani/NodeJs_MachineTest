@@ -14,23 +14,19 @@ const {
     photo,
     /* listSearch */
 } = require("../controllers/product");
-const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
-const { userById } = require("../controllers/user");
+//const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
+//const { userById } = require("../controllers/user");
 
 router.get("/product/:productId", read);
-router.post("/product/create/:userId", requireSignin, isAuth, isAdmin, create);
+router.post("/product/create/", create);
 router.delete(
-    "/product/:productId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
+    "/product/:productId/",
+
     remove
 );
 router.put(
-    "/product/:productId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
+    "/product/:productId/",
+
     update
 );
 
@@ -41,7 +37,7 @@ router.get("/products/categories", listCategories);
 /* router.post("/products/by/search", listBySearch); */
 router.get("/product/photo/:productId", photo);
 
-router.param("userId", userById);
+
 router.param("productId", productById);
 
 module.exports = router;
